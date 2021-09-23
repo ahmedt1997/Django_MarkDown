@@ -13,6 +13,8 @@ import os
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
+import django_heroku
+
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 # Quick-start development settings - unsuitable for production
@@ -24,7 +26,7 @@ SECRET_KEY = 'django-insecure-u=4mbcz=(8@pzc*1u3-q4$ndlq1n67*4-+4$qa5_&s2mz6#+st
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['btre.herokuapp.com']
 
 # Application definition
 
@@ -79,11 +81,11 @@ WSGI_APPLICATION = 'btre.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'btredb',
-        'USER': 'postgres',
-        'PASSWORD': '123456789',
-        'HOST': 'localhost'
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'd5eu14vemkpln5',
+        'USER': 'pwpxeowpxzmphl',
+        'PASSWORD': 'efd8928735cc48ad1b6059abbcbd8c6b425f5ebb888f3de068d281117c117bcd',
+        'HOST': 'ec2-54-174-172-218.compute-1.amazonaws.com'
     }
 }
 
@@ -122,7 +124,12 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+# STATIC_URL = '/static/'
+
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATIC_URL = '/static/'
+django_heroku.settings(locals())
+
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'btre/static')
 ]
